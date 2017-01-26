@@ -15,9 +15,12 @@ def main(argv):
     # --input_currency
     # --output_currency
     # NOTE: --help option is implicit with 'argparse'.
-    parser.add_argument("--amount", type=float, dest='amount', metavar='AMOUNT', required=True)
-    parser.add_argument("--input_currency", type=str, dest='input_currency', metavar='INPUT_CURRENCY', required=True)
-    parser.add_argument("--output_currency", type=str, dest='output_currency', metavar='OUTPUT_CURRENCY', default=None)
+    parser.add_argument("--amount", metavar='AMOUNT', type=float,
+        dest='amount', required=True, help='amount to convert')
+    parser.add_argument("--input_currency", metavar='INPUT_CURRENCY', type=str,
+        dest='input_currency', required=True, help='code or symbol of currency to convert from')
+    parser.add_argument("--output_currency", metavar='OUTPUT_CURRENCY', type=str,
+        dest='output_currency', default=None, help='code or symbol of currency to convert to (optional)')
 
     opts = parser.parse_args(argv)
 
