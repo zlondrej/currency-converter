@@ -8,7 +8,36 @@ from forex_python.converter import CurrencyCodes
 from forex_python.converter import CurrencyRates
 from forex_python.converter import RatesNotAvailableError
 
+
+code_dictionary = \
+    { u'$':   'USD'
+    , u'Fr.': 'CHF'
+    , u'Ft':  'HUF'
+    , u'HK$': 'HKD'
+    , u'Kr':  'DKK'
+    , u'Kč':  'CZK'
+    , u'L':   'RON'
+    , u'NZ$': 'NZD'
+    , u'R$':  'BRL'
+    , u'R':   'RUB'
+    , u'RM':  'MYR'
+    , u'Rp':  'IDR'
+    , u'S$':  'SGD'
+    , u'W':   'KRW'
+    , u'kn':  'HRK'
+    , u'kr':  'NOK'
+    , u'zł':  'PLN'
+    , u'£':   'GBP'
+    , u'¥':   'JPY'
+    , u'฿':   'THB'
+    , u'₪':   'ILS'
+    , u'€':   'EUR'
+    , u'₱':   'PHP'
+    , u'₹':   'INR'
+    }
+
 def main(argv):
+
     parser = argparse.ArgumentParser(description='Currency converter.')
     # Options:
     # --amount
@@ -24,9 +53,9 @@ def main(argv):
 
     opts = parser.parse_args(argv)
 
-    # TODO: Conversion from currency symbol to currency code
-    input_currency = opts.input_currency
-    output_currency = opts.output_currency
+    # Conversion from currency symbol to currency code.
+    input_currency = code_dictionary.get(opts.input_currency, opts.input_currency)
+    output_currency = code_dictionary.get(opts.output_currency, opts.output_currency)
 
     # Check if given currency codes are supported
     if CurrencyCodes().get_currency_name(input_currency) is None:
